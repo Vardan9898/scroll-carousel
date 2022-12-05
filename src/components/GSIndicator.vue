@@ -87,7 +87,7 @@ export default defineComponent({
 
     const barStyle = computed(() => {
       return {
-        width: `${props.barWidthPercent}%`,
+        width: `2px`,
         left: `${props.barOffsetPercent}%`,
       }
     })
