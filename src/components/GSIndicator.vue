@@ -158,9 +158,8 @@ export default defineComponent({
     transform: translate(0, -50%);
     background: var(--gsc-indicator-bar-color);
     cursor: grab;
-    height: 1px;
+    height: 10px;
     width: 0; // 0 by default
-    border-radius: 4px;
     transition: height 0.15s;
 
     &::after {
