@@ -67,8 +67,8 @@ export default defineComponent({
 <style lang="scss" scoped>
 .gsl-default {
   position: relative;
-  margin-left: calc(var(--gsc-item-gap-x) * -1px);
-  margin-right: calc(var(--gsc-item-gap-x) * -1px);
+  //margin-left: calc(var(--gsc-item-gap-x) * -1px);
+  //margin-right: calc(var(--gsc-item-gap-x) * -1px);
   position: relative;
 
   &__arrow {

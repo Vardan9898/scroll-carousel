@@ -157,7 +157,7 @@ export default defineComponent({
     transform: translate(0, -50%);
     background: var(--gsc-indicator-bar-color);
     cursor: grab;
-    height: 10px;
+    height: 2px;
     width: 0; // 0 by default
     transition: height 0.15s;
 
@@ -179,13 +179,13 @@ export default defineComponent({
     }
 
     .gsc-indicator__bar {
-      height: 10px;
+      height: 3px;
     }
   }
 
   &--scrolling {
     .gsc-indicator__bar {
-      height: 10px !important;
+      height: 3px !important;
     }
   }
 }
