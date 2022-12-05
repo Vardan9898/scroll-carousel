@@ -133,7 +133,7 @@ export default defineComponent({
   position: relative;
 
   &__track {
-    height: 9px;
+    height: 1px;
     background: var(--gsc-indicator-track-color);
     width: 100%;
     transition: height 0.15s;
