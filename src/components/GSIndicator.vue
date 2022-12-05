@@ -87,7 +87,7 @@ export default defineComponent({
 
     const barStyle = computed(() => {
       return {
-        width: `9px`,
+        width: `10px`,
         left: `${props.barOffsetPercent}%`,
       }
     })
@@ -133,9 +133,8 @@ export default defineComponent({
   position: relative;
 
   &__track {
-    height: 4px;
+    height: 9px;
     background: var(--gsc-indicator-track-color);
-    border-radius: 5px;
     width: 100%;
     transition: height 0.15s;
     position: relative;
@@ -178,11 +177,11 @@ export default defineComponent({
   &:hover,
   &--scrolling {
     .gsc-indicator__track {
-      height: 6px;
+      height: 9px;
     }
 
     .gsc-indicator__bar {
-      height: 8px;
+      height: 9px;
     }
   }
 
