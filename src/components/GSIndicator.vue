@@ -80,7 +80,7 @@ export default defineComponent({
 
       const relativePosition = relativeX / indicatorEl.offsetWidth
 
-      const barOffsetPercent = (relativePosition - (props.barWidthPercent / 100 / 2)) * 100
+      const barOffsetPercent = (relativePosition - (10 / 100 / 2)) * 100
       emit('smooth-scroll', {
         barOffsetPercent,
       })
