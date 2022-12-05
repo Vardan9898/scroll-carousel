@@ -177,7 +177,7 @@ export default defineComponent({
   &:hover,
   &--scrolling {
     .gsc-indicator__track {
-      height: 9px;
+      height: 1px;
     }
 
     .gsc-indicator__bar {
