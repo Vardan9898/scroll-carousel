@@ -181,13 +181,13 @@ export default defineComponent({
     }
 
     .gsc-indicator__bar {
-      height: 9px;
+      height: 1px;
     }
   }
 
   &--scrolling {
     .gsc-indicator__bar {
-      height: 10px !important;
+      height: 1px !important;
     }
   }
 }
