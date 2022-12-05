@@ -7,6 +7,7 @@ export default defineComponent({
     barWidthPercent: {
       type: Number,
       required: true,
+
     },
 
     barOffsetPercent: {
@@ -38,7 +39,7 @@ export default defineComponent({
       const differencePercent = (difference / width) * 100
 
       const minOffset = 0
-      const maxOffset = 100 - props.barWidthPercent
+      const maxOffset = 90
 
       let barOffsetPercent = startBarOffsetPercent.value + differencePercent
       if (barOffsetPercent < minOffset)
