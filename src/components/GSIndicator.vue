@@ -80,15 +80,13 @@ export default defineComponent({
 
       const relativePosition = relativeX / indicatorEl.offsetWidth
 
-      const barOffsetPercent = (relativePosition - (10 / 100 / 2)) * 100
-      emit('smooth-scroll', {
-        barOffsetPercent,
-      })
+      const barOffsetPercent = (relativePosition - (props.barWidthPercent / 100 / 2)) * 100
+      emit('smooth-scroll', {barOffsetPercent,})
     }
 
     const barStyle = computed(() => {
       return {
-        width: `10px`,
+        width: `${props.barWidthPercent}%`,
         left: `${props.barOffsetPercent}%`,
       }
     })
