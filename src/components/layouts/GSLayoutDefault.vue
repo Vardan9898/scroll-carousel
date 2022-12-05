@@ -33,6 +33,10 @@ export default defineComponent({
 
 <template>
   <div>
+    <div class="gsl-default__indicator">
+      <slot name="indicator" />
+    </div>
+
     <div class="gsl-default">
       <slot name="track" />
 
@@ -57,9 +61,6 @@ export default defineComponent({
       </template>
     </div>
 
-    <div class="gsl-default__indicator">
-      <slot name="indicator" />
-    </div>
   </div>
 </template>
 
