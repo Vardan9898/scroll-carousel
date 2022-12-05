@@ -87,6 +87,8 @@ export default defineComponent({
 
   &__indicator {
     margin-top: 12px;
+    padding-left: 10%;
+    padding-right: 10%;
   }
 }
 
