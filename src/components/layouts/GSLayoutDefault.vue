@@ -34,13 +34,7 @@ export default defineComponent({
 <template>
   <div>
     <div class="gsl-default__indicator">
-      <div>
-        01
-      </div>
       <slot name="indicator" />
-      <div>
-        16
-      </div>
     </div>
 
     <div class="gsl-default">
@@ -92,8 +86,6 @@ export default defineComponent({
   }
 
   &__indicator {
-    display: flex;
-    justify-content: space-between;
     margin-top: 12px;
     padding-left: 6%;
     padding-right: 6%;
