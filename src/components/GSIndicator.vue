@@ -39,7 +39,7 @@ export default defineComponent({
       const differencePercent = (difference / width) * 100
 
       const minOffset = 0
-      const maxOffset = 90
+      const maxOffset = 100
 
       let barOffsetPercent = startBarOffsetPercent.value + differencePercent
       if (barOffsetPercent < minOffset)
@@ -69,24 +69,25 @@ export default defineComponent({
 
       startBarX.value = event.clientX
       startBarOffsetPercent.value = props.barOffsetPercent
+
     }
 
     const onTrackClick = (event: MouseEvent) => {
       const x = event.clientX
-
       const indicatorEl = indicatorRef.value!
       const indicatorX = indicatorEl.getBoundingClientRect().left
       const relativeX = x - indicatorX
 
-      const relativePosition = relativeX / indicatorEl.offsetWidth
+      const relativePosition = relativeX / indicatorEl.clientWidth
+      const barWidth = (props.barWidthPercent*100)/indicatorEl.clientWidth
 
-      const barOffsetPercent = (relativePosition - (props.barWidthPercent / 100 / 2)) * 100
+      const barOffsetPercent = (relativePosition - (barWidth / 100 / 2)) * 100
       emit('smooth-scroll', {barOffsetPercent,})
     }
 
     const barStyle = computed(() => {
       return {
-        width: `${props.barWidthPercent}%`,
+        width: `${props.barWidthPercent}px`,
         left: `${props.barOffsetPercent}%`,
       }
     })
@@ -107,17 +108,17 @@ export default defineComponent({
 
 <template>
   <div
-    ref="indicatorRef"
-    class="gsc-indicator"
-    :class="{
+      ref="indicatorRef"
+      class="gsc-indicator"
+      :class="{
       'gsc-indicator--scrolling': moving,
     }"
   >
     <div class="gsc-indicator__track" @click="onTrackClick" />
     <div
-      class="gsc-indicator__bar"
-      :style="barStyle"
-      @mousedown="onMouseDown"
+        class="gsc-indicator__bar"
+        :style="barStyle"
+        @mousedown="onMouseDown"
     />
   </div>
 </template>
@@ -157,7 +158,7 @@ export default defineComponent({
     transform: translate(0, -50%);
     background: var(--gsc-indicator-bar-color);
     cursor: grab;
-    height: 2px;
+    height: 9px;
     width: 0; // 0 by default
     transition: height 0.15s;
 
@@ -176,16 +177,6 @@ export default defineComponent({
   &--scrolling {
     .gsc-indicator__track {
       height: 1px;
-    }
-
-    .gsc-indicator__bar {
-      height: 3px;
-    }
-  }
-
-  &--scrolling {
-    .gsc-indicator__bar {
-      height: 3px !important;
     }
   }
 }
