@@ -112,7 +112,7 @@ export default defineComponent({
     const indicatorOptions = reactive({
       isScrolling: false,
       barOffsetPercent: 0,
-      barWidthPercent: 0,
+      barWidthPercent: 9
     })
 
     const currentItemByPercent = computed(() => {
@@ -125,9 +125,9 @@ export default defineComponent({
       setImmediately,
       setSmoothly,
     } = useAnimateNumber((offset: number) =>
-      trackRef.value?.scrollTo({
-        left: offset,
-      }),
+        trackRef.value?.scrollTo({
+          left: offset,
+        }),
     )
 
     const itemGap = computed(() => {
@@ -272,14 +272,16 @@ export default defineComponent({
       else
         disabledSide.value = 'none'
 
-      indicatorOptions.barOffsetPercent = (scrollLeft / trackRef.value!.scrollWidth) * 100
+      indicatorOptions.barOffsetPercent = (scrollLeft / (trackRef.value!.scrollWidth - trackRef.value!.offsetWidth)) *100
 
       onFinishScrollingThrottled()
       onFinishScrollingDebounced(scrollLeft)
     }
 
     const onIndicatorScroll = ({ barOffsetPercent }: { barOffsetPercent: number }, smooth = false) => {
-      const scrollLeft = trackRef.value!.scrollWidth * (barOffsetPercent / 100)
+
+      const scrollLeft = (trackRef.value!.scrollWidth - trackRef.value!.offsetWidth) * (barOffsetPercent / 100)
+
       setScrollLeft(scrollLeft, smooth)
     }
 
@@ -296,9 +298,6 @@ export default defineComponent({
       resizeObserver = new ResizeObserver(([entry]) => {
         window.requestAnimationFrame(() => {
           width.value = entry.contentRect.width
-          nextTick(() => {
-            indicatorOptions.barWidthPercent = (width.value / trackRef.value!.scrollWidth) * 100
-          })
         })
       })
 
@@ -359,41 +358,41 @@ export default defineComponent({
 
 <template>
   <div
-    class="gsc"
-    :class="{
+      class="gsc"
+      :class="{
       'gsc--scrolling': indicatorOptions.isScrolling,
       'gsc--initialized': initialized,
     }"
-    :style="styles"
+      :style="styles"
   >
     <Component
-      :is="layout"
-      :on-move="onMove"
-      :on-move-to="onMoveTo"
-      :disabled-side="disabledSide"
-      :current-item="scopedCurrentItem"
-      :current-item-by-percent="currentItemByPercent"
-      :items="items"
-      :initialized="initialized"
-      v-bind="layoutProps"
+        :is="layout"
+        :on-move="onMove"
+        :on-move-to="onMoveTo"
+        :disabled-side="disabledSide"
+        :current-item="scopedCurrentItem"
+        :current-item-by-percent="currentItemByPercent"
+        :items="items"
+        :initialized="initialized"
+        v-bind="layoutProps"
     >
       <template #track>
         <div
-          ref="trackRef"
-          class="gsc-track"
-          @scroll.passive="onTrackScroll"
+            ref="trackRef"
+            class="gsc-track"
+            @scroll.passive="onTrackScroll"
         >
           <div class="gsc-track__inner">
             <div
-              v-for="(item, index) in items"
-              :key="keyField ? item[keyField] : index"
-              class="gsc-track__item"
-              :style="itemStyle"
+                v-for="(item, index) in items"
+                :key="keyField ? item[keyField] : index"
+                class="gsc-track__item"
+                :style="itemStyle"
             >
               <slot
-                name="item"
-                :data="item"
-                :index="index"
+                  name="item"
+                  :data="item"
+                  :index="index"
               />
             </div>
           </div>
@@ -401,12 +400,12 @@ export default defineComponent({
       </template>
       <template #indicator>
         <GSIndicator
-          :bar-offset-percent="indicatorOptions.barOffsetPercent"
-          :bar-width-percent="indicatorOptions.barWidthPercent"
-          @smooth-scroll="onIndicatorScroll($event, true)"
-          @scroll="onIndicatorScroll"
-          @scroll:start="onSetIndicatorScrollStatus(true)"
-          @scroll:end="onSetIndicatorScrollStatus(false)"
+            :bar-offset-percent="indicatorOptions.barOffsetPercent"
+            :bar-width-percent="indicatorOptions.barWidthPercent"
+            @smooth-scroll="onIndicatorScroll($event, true)"
+            @scroll="onIndicatorScroll"
+            @scroll:start="onSetIndicatorScrollStatus(true)"
+            @scroll:end="onSetIndicatorScrollStatus(false)"
         />
       </template>
     </Component>
@@ -421,6 +420,7 @@ export default defineComponent({
   --gsc-arrow-color: var(--gsc-custom-arrow-color, #fff);
   --gsc-indicator-bar-color: var(--gsc-custom-indicator-bar-color, #212121);
   --gsc-indicator-track-color: var(--gsc-custom-indicator-track-color, #e0e0e0);
+
 
   &--scrolling {
     user-select: none;
