@@ -453,4 +453,27 @@ export default defineComponent({
     flex-shrink: 0;
   }
 }
+
+@media (max-width: 640px) {
+  .gsc-track {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &__inner {
+      display: flex;
+    }
+
+    &__item {
+      width: 100% !important;
+      padding: calc(var(--gsc-item-gap-y) * 1px) calc(var(--gsc-item-gap-x) * 1px);
+      flex-shrink: 0;
+    }
+  }
+}
 </style>
