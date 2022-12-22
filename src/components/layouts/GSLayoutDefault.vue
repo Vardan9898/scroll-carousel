@@ -87,8 +87,8 @@ export default defineComponent({
 
   &__indicator {
     margin-top: 12px;
-    padding-left: 6%;
-    padding-right: 6%;
+    padding-left: 11%;
+    padding-right: 11%;
   }
 }
 
@@ -101,6 +101,15 @@ export default defineComponent({
   &-enter-from,
   &-leave-to {
     opacity: 0;
+  }
+}
+
+@media (min-width: 640px){
+  .gsl-default {
+    &__indicator {
+      padding-left: 6%;
+      padding-right: 6%;
+    }
   }
 }
 </style>
