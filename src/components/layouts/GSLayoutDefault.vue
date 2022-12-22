@@ -108,7 +108,7 @@ export default defineComponent({
   .gsl-default {
     &__indicator {
       padding-left: 6%;
-      padding-right: 6%;
+      padding-right: 10%;
     }
   }
 }
