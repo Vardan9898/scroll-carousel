@@ -406,6 +406,7 @@ export default defineComponent({
             @scroll="onIndicatorScroll"
             @scroll:start="onSetIndicatorScrollStatus(true)"
             @scroll:end="onSetIndicatorScrollStatus(false)"
+            v-show="items.length > itemsToShow"
         />
       </template>
     </Component>
